@@ -1,8 +1,8 @@
 import pygame, sys
 pygame.init()
 
-width = 864
-height = 936
+width = 400
+height = 600
 
 win = pygame.display.set_mode((width,height))
 clock = pygame.time.Clock()
@@ -15,7 +15,7 @@ run = True
 while run:
 
     #drawing screen
-    win.blit(bg, (0,0))
+    win.blit(background, (0,0))
 
 
 
@@ -23,7 +23,7 @@ while run:
         if event.type == pygame.QUIT:
             run = False
 
-    win.fill((135, 206, 235))
+    
     pygame.display.update()
     clock.tick(60)
 
