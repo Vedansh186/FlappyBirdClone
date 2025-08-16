@@ -1,21 +1,34 @@
 import pygame, sys
 pygame.init()
 
-width = 400
-height = 600
-
-win = pygame.display.set_mode((width,height))
+#setting up the game captions and fps
 clock = pygame.time.Clock()
-
-
-background = pygame.image.load("assets/bg.png")
 pygame.display.set_caption("Flappy Bird")
+
+#setting up the dimensions of the window
+width = 400
+height = 675
+win = pygame.display.set_mode((width,height))
+
+
+#setting up the background
+background = pygame.image.load("assets/realbg2.png")
+ground = pygame.image.load("assets/realground.png")
+ground_scroll = 0
+scroll_speed = 4
+
 
 run = True
 while run:
 
-    #drawing screen
+    #drawing screen and animating the moving background
     win.blit(background, (0,0))
+    win.blit(ground,(ground_scroll,474) )
+    ground_scroll -= scroll_speed
+    if abs(ground_scroll) > 140:
+        ground_scroll = 0
+
+
 
 
 
