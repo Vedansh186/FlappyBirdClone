@@ -52,13 +52,17 @@ flapper = Bird(200, int(height/2), flap_sound)
 bird_group.add(flapper)
 
 run = True
+
+#main game loop
 while run:
     
-
+    #mouse position corresponding to starting
     mouse_pos = pygame.mouse.get_pos()
     mouse_pressed = pygame.mouse.get_pressed()
     keys = pygame.key.get_pressed()
 
+
+    #quit system and flying reset
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
@@ -66,10 +70,12 @@ while run:
             if event.type == pygame.MOUSEBUTTONDOWN or event.key == pygame.K_SPACE:
                 flying = True
 
+    #setting up home screen
     if game_state == "HOME":
         game_state = home_screen.handleEvent(mouse_pos, mouse_pressed, keys)
         home_screen.draw()
 
+        #setting up playfield
         if game_state == "PLAYING":
             flying = True
             game_over = False
@@ -88,6 +94,7 @@ while run:
         pipe_group.draw(win)
         pipe_group.update(scroll_speed)
 
+        #setting up the scoring system
         for pipe in pipe_group:
             if not pipe.passed and pipe.rect.centerx < flapper.rect.centerx:
                 pipe.passed = True
@@ -117,7 +124,10 @@ while run:
             game_over = True
             flying = False
             game_state = "GAME_OVER"
+            crash_sound.play()
 
+
+        #setting the spawning of pipes
         if game_over == False and flying == True:
             time_now = pygame.time.get_ticks()
             if time_now - last_pipe > pipe_frequency:
@@ -145,16 +155,6 @@ while run:
             flapper.rect.center = (200, int(height/2))
             flapper.velocity = 0
 
-
-
-
-    
-
-
-
-
-
-    
     pygame.display.update()
     clock.tick(60)
 
