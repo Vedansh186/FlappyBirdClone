@@ -18,3 +18,15 @@ git clone https://github.com/Vedansh186/FlappyBirdClone.git
 cd FlappyBirdClone
 pip install pygame
 python main.py
+```
+## **Screenshots**
+Here are some screenshots from the game
+
+### Home Screen
+![Home Screen](assets/HomeScreenImage2.png)
+
+### Gameplay
+![Gameplay](assets/gameplay.png)
+
+### Game Over
+![Game Over](assets/GameOver.png)
