@@ -35,7 +35,7 @@ class Bird(pygame.sprite.Sprite):
             #control the bird to go up
             if (pygame.mouse.get_pressed()[0] == 1 or keys[pygame.K_SPACE]) and self.click == False:
                 self.click = True
-                self.velocity = -10
+                self.velocity = -8
             if pygame.mouse.get_pressed()[0] == 0 and not keys[pygame.K_SPACE]:
                 self.click = False
 
