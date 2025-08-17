@@ -1,11 +1,12 @@
 import pygame
 
 class Bird(pygame.sprite.Sprite):
-    def __init__(self, x, y):
+    def __init__(self, x, y, flap_sound):
         pygame.sprite.Sprite.__init__(self)
         self.images = []
         self.index = 0
         self.counter = 0
+        self.flap_sound = flap_sound
 
         for num in range(1,4):
             img = pygame.image.load(f'assets/bird{num}.png')
@@ -36,6 +37,7 @@ class Bird(pygame.sprite.Sprite):
             if (pygame.mouse.get_pressed()[0] == 1 or keys[pygame.K_SPACE]) and self.click == False:
                 self.click = True
                 self.velocity = -8
+                self.flap_sound.play()
             if pygame.mouse.get_pressed()[0] == 0 and not keys[pygame.K_SPACE]:
                 self.click = False
 

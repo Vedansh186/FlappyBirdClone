@@ -7,6 +7,7 @@ import random
 
 
 pygame.init()
+pygame.mixer.init()
 
 #setting up the game captions and fps
 clock = pygame.time.Clock()
@@ -28,6 +29,7 @@ game_state = "HOME"
 background = pygame.image.load("assets/background2.png")
 ground = pygame.image.load("assets/groundfinal.jpeg")
 
+#setting up the variables
 ground_scroll = 0
 background_scroll = 0 #leaving now bug fix needed later
 scroll_speed = 4
@@ -38,11 +40,15 @@ pipe_gap = 150
 pipe_frequency = 1500 #milliseconds
 last_pipe = pygame.time.get_ticks() - pipe_frequency
 
+#setting up sounds
+flap_sound = pygame.mixer.Sound("assets/flap.wav")
+point_sound = pygame.mixer.Sound('assets/point.wav')
+crash_sound = pygame.mixer.Sound('assets/crash.wav')
 
 #calling bird class and making bird a sprite
 bird_group = pygame.sprite.Group()
 pipe_group = pygame.sprite.Group()
-flapper = Bird(200, int(height/2))
+flapper = Bird(200, int(height/2), flap_sound)
 bird_group.add(flapper)
 
 run = True
@@ -86,6 +92,7 @@ while run:
             if not pipe.passed and pipe.rect.centerx < flapper.rect.centerx:
                 pipe.passed = True
                 score += 0.5
+                point_sound.play()
 
 
 
@@ -97,6 +104,7 @@ while run:
     #collision detection
         if pygame.sprite.groupcollide(bird_group, pipe_group, False, False) or flapper.rect.top < 0:
             game_over = True
+            crash_sound.play()
 
     #animating the ground
         if game_over == False:
