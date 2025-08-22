@@ -22,10 +22,11 @@ class GameOverScreen:
 
     def draw(self, score):
         self.screen.blit(self.bg_image, (0,0))
-        font = pygame.font.SysFont("Poppins", 40)
-        text = font.render(f"Score: {score}", True, (0,0,255))
-        self.screen.blit(text, (10, 10))
+        font = pygame.font.SysFont("Poppins", 50)
+        text = font.render(f"Score: {score}", True, (255,0,0))
+        self.screen.blit(text, (165, 500 ))
         self.restart_button.draw(self.screen)
+        
 
     def handle_event(self, mouse_pos, mouse_pressed, keys):
         if self.restart_button.isClicked(mouse_pos, mouse_pressed) or keys[pygame.K_SPACE]:

@@ -139,9 +139,9 @@ while run:
                 last_pipe = time_now
 
     # Draw score
-        font = pygame.font.SysFont("Poppins", 40)
-        score_text = font.render(f"Score: {int(score)}", True, (0,255,0))
-        win.blit(score_text, (10,10))
+        font = pygame.font.SysFont("Poppins", 75)
+        score_text = font.render(f"{int(score)}", True, (0,255,0))
+        win.blit(score_text, (215,10))
         
     
     elif game_state == "GAME_OVER":
